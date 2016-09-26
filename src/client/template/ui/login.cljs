@@ -1,9 +1,10 @@
 (ns template.ui.login
-  (:require [om.next :as om :refer-macros [defui]]
-            [untangled.client.core :as u]
-            [untangled.client.data-fetch :as f]
+  (:require [om-css.core :as css :refer-macros [localize-classnames]]
             [om.dom :as dom]
-            [om-css.core :as css :refer-macros [localize-classnames]]
+            [om.next :as om :refer-macros [defui]]
+            [untangled.client.core :as u]
+            [template.ui.main :as main]
+            [untangled.client.data-fetch :as f]
             [untangled.client.mutations :as m]))
 
 (defmethod m/mutate 'login/attempt-login [{:keys [state]} k {:keys [uid]}]
@@ -15,7 +16,7 @@
 (defmethod m/mutate 'login/server-down [{:keys [state]} k p]
   {:action (fn [] (swap! state assoc :server-down true))})
 
-(defmethod m/mutate 'login/login-complete [{:keys [state]} k p]
+(defmethod m/mutate 'login/login-complete [{:keys [state] :as env} k p]
   {:action (fn []
              (let [{:keys [logged-in? current-user]} @state]
                (if logged-in?

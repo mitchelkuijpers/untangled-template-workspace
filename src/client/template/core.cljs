@@ -6,8 +6,10 @@
 
 (defonce app
          (atom (uc/new-untangled-client
-                 :started-callback (fn [{:keys [reconciler]}]
-                                     (f/load-data reconciler [:logged-in? :current-user]
+                :started-callback (fn [{:keys [reconciler] :as app}]
+                                    (.log js/console app)
+                                     (f/load-data reconciler
+                                                  [:logged-in? :current-user]
                                                   :post-mutation 'login/login-complete)
                                      ;;TODO: initial load of data
                                      ))))

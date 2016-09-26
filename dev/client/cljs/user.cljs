@@ -51,3 +51,5 @@
     {:QUERY  query
      :RESULT (om/db->tree query state state)}))
 
+(comment
+  (app-state))

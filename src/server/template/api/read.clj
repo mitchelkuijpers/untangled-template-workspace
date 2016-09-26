@@ -12,5 +12,6 @@
   (case disp-key
     :logged-in? {:value @m/logged-in?}
     :hello-world {:value 42}
+    :users {:value [{:db/id 1 :user/name "mitchel"} {:db/id 2 :user/name "tony"}]}
     :current-user {:value {:id 42 :name "Tony Kay"}}
     (throw (ex-info "Invalid request" {:query query :key disp-key}))))

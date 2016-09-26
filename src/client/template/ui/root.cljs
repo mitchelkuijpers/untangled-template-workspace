@@ -1,19 +1,23 @@
 (ns template.ui.root
   (:require
-    [untangled.client.mutations :as mut]
-    [om.dom :as dom]
-    [template.ui.login :as l]
-    [template.ui.main :as main]
-    [template.ui.new-user :as nu]
-    [om.next :as om :refer-macros [defui]]
-    [untangled.client.core :as u]
-    [untangled.client.mutations :as m]))
+   [untangled.client.mutations :as mut]
+   [om.dom :as dom]
+   [template.ui.login :as l]
+   [template.ui.main :as main]
+   [template.ui.new-user :as nu]
+   [om.next :as om :refer-macros [defui]]
+   [untangled.client.core :as u]
+   [untangled.client.mutations :as m]
+   [untangled.client.data-fetch :as f]))
 
 (defn nav-to [env page] (swap! (:state env) assoc :current-page [page :page]))
 
 (defmethod m/mutate 'nav/new-user [env k p] {:action (fn [] (nav-to env :new-user))})
 (defmethod m/mutate 'nav/login [env k p] {:action (fn [] (nav-to env :login))})
-(defmethod m/mutate 'nav/main [env k p] {:action (fn [] (nav-to env :main))})
+(defmethod m/mutate 'nav/main [{:keys [state] :as env} k p]
+  {:action (fn []
+             (nav-to env :main)
+             )})
 
 (defui ^:once Loading
   static u/InitialAppState

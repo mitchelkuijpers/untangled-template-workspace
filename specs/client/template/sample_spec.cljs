@@ -3,5 +3,5 @@
 
 (specification "a sample spec file"
   (behavior "for you to tinker with"
-    (assertions "TODO: FIXME:"
-      0 => 1)))
+    (assertions "TODO: FIXME please:"
+      1 => 1)))

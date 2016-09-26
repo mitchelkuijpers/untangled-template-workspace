@@ -24,8 +24,10 @@
          preferred-config (assoc-in figwheel-config [:data :build-ids] build-ids)]
      (reset! figwheel (component/system-map :figwheel-system (fig/figwheel-system preferred-config)))
      (println "STARTING FIGWHEEL ON BUILDS: " build-ids)
-     (swap! figwheel component/start)
-     (fig/cljs-repl (:figwheel-system @figwheel)))))
+     (swap! figwheel component/start))))
+
+(defn start-repl []
+  (fig/cljs-repl (:figwheel-system @figwheel)))
 
 ;; ==================== SERVER ====================
 
