@@ -39,7 +39,7 @@
                  [{:users (om/get-query User)}]
                  :marker false
 
-                 ;; When you remove the params it will actually have a
+                 ;; When you remove the params it will actually have a :ui/fetch-state
                  :params {:users {:foo "bar"}}
                  :refresh [:users]))
   (render [this]
